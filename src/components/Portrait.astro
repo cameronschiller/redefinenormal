@@ -1,0 +1,61 @@
+---
+import { Picture } from 'astro:assets';
+import type { Photo } from '../config/assets';
+
+interface Props {
+  photo: Photo | null;
+  slot: string;          // human name of the slot, shown on the placeholder
+  spec: string;          // e.g. "Portrait 4:5 · ≥ 2400 px"
+  class?: string;
+  sizes?: string;
+  eager?: boolean;
+  cutout?: boolean;
+  dark?: boolean;        // placeholder on a black section      // transparent, background-removed portrait
+}
+const { photo, slot, spec, class: className, sizes = '(min-width: 1024px) 40vw, 100vw', eager = false, cutout = false, dark = false } = Astro.props;
+---
+{photo ? (
+  <Picture
+    src={photo.src}
+    alt={photo.alt}
+    formats={cutout ? ['webp'] : ['avif', 'webp']}
+    widths={[480, 800, 1200, 1800, 2400]}
+    sizes={sizes}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : 'auto'}
+    class:list={[cutout ? 'h-auto w-full' : 'h-full w-full object-cover', 'grayscale', className]}
+  />
+) : cutout ? (
+  <div class:list={['relative h-full w-full', className]} role="img" aria-label={`Development placeholder: ${slot}. Approved photography pending.`}>
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 500 600" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <defs>
+        <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+          <rect width="12" height="12" fill="#ececec" /><line x1="0" y1="0" x2="0" y2="12" stroke="#0a0a0a" stroke-opacity="0.06" stroke-width="2" />
+        </pattern>
+      </defs>
+      <path fill="url(#hatch)" d="M250 70c58 0 98 44 98 108 0 52-24 92-54 112v34c86 14 170 52 196 120l10 156H0l10-156c26-68 110-106 196-120v-34c-30-20-54-60-54-112 0-64 40-108 98-108z" />
+    </svg>
+    <div class="absolute inset-x-0 bottom-6 flex flex-col items-center gap-1 text-center">
+      <span class="label rounded-full bg-ink px-3 py-1 text-paper">Placeholder · not a photograph</span>
+      <span class="label text-ash">{slot}</span>
+      <span class="label text-ash/80">{spec}</span>
+    </div>
+  </div>
+) : (
+  <div
+    class:list={['placeholder flex h-full w-full flex-col justify-between rounded-2xl p-4 sm:p-5', dark && '!bg-[#1c1c1c] !text-paper [background-image:none]', className]}
+    role="img"
+    aria-label={`Development placeholder: ${slot}. Approved photography pending.`}
+  >
+    <div><span class:list={["label rounded-full px-2.5 py-1", dark ? "bg-paper text-ink" : "bg-ink text-paper"]}>Placeholder</span></div>
+    <svg class="mx-auto w-2/5 max-w-40 text-ink/20" viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+      <circle cx="50" cy="38" r="20" /><path d="M10 118c4-30 20-44 40-44s36 14 40 44" />
+      <line x1="0" y1="0" x2="100" y2="120" /><line x1="100" y1="0" x2="0" y2="120" />
+    </svg>
+    <div>
+      <p class="label">{slot}</p>
+      <p class:list={["label", dark ? "text-fog" : "text-ash"]}>Not a photograph</p>
+      <p class:list={["label", dark ? "text-fog" : "text-ash"]}>{spec}</p>
+    </div>
+  </div>
+)}

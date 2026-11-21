@@ -1,0 +1,71 @@
+---
+import Review from './Review.astro';
+import SectionHead from './SectionHead.astro';
+const pillars = [
+  { n: '01', t: 'The story', d: 'An authentic personal transformation story — and extraordinary experiences that challenge conventional thinking.' },
+  { n: '02', t: 'Participation', d: 'Interactive moments that bring the audience directly into the experience.' },
+  { n: '03', t: 'The method', d: 'Principles from the Operator-Athlete Method that connect ambition with practical execution.' },
+  { n: '04', t: 'The invitation', d: 'A practical invitation for every person to begin their own transformation.' },
+];
+---
+<section id="experience" class="relative bg-paper py-24 md:py-36" aria-labelledby="exp-title">
+  <div class="wrap grid grid-cols-4 gap-x-5 md:grid-cols-12 md:gap-x-6">
+    <SectionHead index="03" label="The Keynote" />
+
+    <h2 id="exp-title" class="col-span-4 md:col-span-10">
+      <span class="reveal display block text-[14vw] uppercase md:text-[7.4vw] 2xl:text-[7.25rem]">Not a lecture.</span>
+      <span class="reveal display block text-[14vw] uppercase text-[#8a8a8a] md:text-[7.4vw] 2xl:text-[7.25rem]" style="--d:100ms">An experience.</span>
+    </h2>
+
+    <div class="col-span-4 mt-16 grid gap-8 text-lg leading-relaxed md:col-span-8 md:col-start-5 md:mt-24 md:grid-cols-2 md:gap-12">
+      <div class="reveal space-y-5">
+        <p class="lede text-2xl">What does it take to transform who you are — and what you believe you’re capable of becoming?</p>
+        <p>In Redefine Normal, Cameron Schiller takes audiences through an extraordinary journey of personal transformation, from confronting his own limitations to competing at the national and international level.</p>
+      </div>
+      <div class="reveal space-y-5 text-ash" style="--d:100ms">
+        <p>Through powerful storytelling, unexpected audience participation, and principles from the Operator-Athlete Method, Cameron challenges audiences to reconsider the assumptions shaping their lives.</p>
+        <p class="text-ink">But the keynote doesn’t stop at inspiration. It introduces a different way to think about personal change — and the decisions and behaviors that can turn possibility into action.</p>
+      </div>
+    </div>
+
+    <!-- Format: drawn to scale, 30 : 15 -->
+    <figure class="reveal col-span-4 mt-24 md:col-span-12 md:mt-36" aria-labelledby="format-cap">
+      <div class="mb-4 flex items-end justify-between">
+        <p class="label">The format</p>
+        <p class="label text-ash">45 min programmed</p>
+      </div>
+      <div class="grid grid-cols-[2fr_1fr] overflow-hidden rounded-3xl border border-ink">
+        <div class="flex min-h-44 flex-col justify-between bg-ink p-4 text-paper md:min-h-56 md:p-6">
+          <span class="label text-fog">00:00</span>
+          <div>
+            <p class="display text-[13vw] md:text-[6.5rem]">30<span class="text-[0.4em]"> min</span></p>
+            <p class="label mt-2">Interactive keynote</p>
+          </div>
+        </div>
+        <div class="flex min-h-44 flex-col justify-between p-4 md:min-h-56 md:p-6">
+          <span class="label text-ash">30:00</span>
+          <div>
+            <p class="display text-[13vw] md:text-[6.5rem]">15<span class="text-[0.4em]"> min</span></p>
+            <p class="label mt-2">Audience Q&amp;A</p>
+          </div>
+        </div>
+      </div>
+      <figcaption id="format-cap" class="mt-4 flex flex-col justify-between gap-2 text-ash sm:flex-row">
+        <span>30-minute interactive keynote followed by a 15-minute audience Q&amp;A.</span>
+        <span>A 30-minute keynote-only format is available for tighter schedules.</span>
+      </figcaption>
+    </figure>
+
+    <ol class="col-span-4 mt-24 grid gap-y-12 md:col-span-12 md:mt-32 md:grid-cols-4 md:gap-x-6">
+      {pillars.map((p, i) => (
+        <li class="reveal border-t border-ink pt-5" style={`--d:${i * 90}ms`}>
+          <p class="label text-ash">{p.n}</p>
+          <h3 class="mt-8 text-2xl font-semibold uppercase tracking-[0.02em] md:mt-12">{p.t}</h3>
+          <p class="mt-4 max-w-xs leading-relaxed text-ash">{p.d}</p>
+        </li>
+      ))}
+    </ol>
+
+
+  </div>
+</section>

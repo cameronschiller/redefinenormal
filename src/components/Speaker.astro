@@ -1,0 +1,64 @@
+---
+import Portrait from './Portrait.astro';
+import Review from './Review.astro';
+import SectionHead from './SectionHead.astro';
+import { speakerPortrait } from '../config/assets';
+
+const ledger = [
+  { k: 'Team USA', v: 'Four-time Team USA athlete' },
+  { k: 'National titles', v: 'Two-time national triathlon champion' },
+  { k: 'Ironman', v: 'Ironman finisher' },
+  { k: 'Skydives', v: 'More than 3,000' },
+  { k: 'Profession', v: 'Senior Producer, Publicis' },
+];
+---
+<section id="speaker" class="relative bg-paper py-24 md:py-36" aria-labelledby="speaker-title">
+  <div class="wrap grid grid-cols-4 gap-x-5 md:grid-cols-12 md:gap-x-6">
+    <SectionHead index="04" label="The Speaker" />
+
+    <div class="reveal col-span-4 md:col-span-5 md:row-span-3">
+      <div class="aspect-[4/5] overflow-hidden rounded-3xl md:sticky md:top-28 [&_img]:object-[50%_20%]">
+        <Portrait photo={speakerPortrait} slot="Speaker portrait — Cameron Schiller" spec="Portrait 4:5 · B&W · ≥ 2000 px" sizes="(min-width: 768px) 40vw, 100vw" />
+      </div>
+    </div>
+
+    <div class="col-span-4 mt-12 md:col-span-6 md:col-start-7 md:mt-0">
+      <h2 id="speaker-title" class="display text-[17vw] uppercase md:text-[6.6vw] 2xl:text-[6.5rem]">
+        <span class="reveal block">Cameron</span>
+        <span class="reveal block" style="--d:80ms">Schiller</span>
+      </h2>
+      <p class="reveal label mt-6 text-ash" style="--d:160ms">Speaker · Team USA Athlete · Creative Leader</p>
+
+      <p class="reveal lede mt-12 text-[1.75rem] md:text-[2.1rem]">Cameron Schiller knows what it means to redefine normal.</p>
+      <div class="reveal mt-8 space-y-5 text-lg leading-relaxed text-ash">
+        <p>Once 60 pounds overweight, he transformed his relationship with physical performance and personal possibility, ultimately becoming a four-time Team USA athlete, two-time national triathlon champion, and multiple Ironman finisher.</p>
+        <p>His appetite for challenging perceived limitations extends beyond endurance sports. With more than 3,000 skydives, Cameron has spent years exploring the relationship between preparation, risk, discipline, and performance.</p>
+      </div>
+    </div>
+
+    <dl class="col-span-4 mt-14 md:col-span-6 md:col-start-7 md:mt-14" aria-label="Selected background">
+      {ledger.map((row, i) => (
+        <div class="reveal grid grid-cols-[1fr_1.6fr] gap-4 border-t border-line-ink py-4 last:border-b" style={`--d:${i * 60}ms`}>
+          <dt class="label pt-1 text-ash">{row.k}</dt>
+          <dd class="text-lg">{row.verify ? <Review note="Verify">{row.v}</Review> : row.v}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <div class="col-span-4 mt-12 md:col-span-6 md:col-start-7">
+      <details class="group border-t border-ink">
+        <summary class="label flex min-h-14 cursor-pointer list-none items-center justify-between py-4 [&::-webkit-details-marker]:hidden">
+          <span class="group-open:hidden">Read the full biography</span>
+          <span class="hidden group-open:inline">Close biography</span>
+          <span class="text-lg transition-transform duration-300 group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <div class="space-y-5 pb-6 text-lg leading-relaxed text-ash">
+          <p>Professionally, Cameron is a Senior Producer at Publicis, where he has led complex international productions and worked on major campaigns connected to global sporting events, including the Olympic Games.</p>
+          <p>Across these experiences, Cameron has developed an approach to personal transformation that connects the principles of high-performance athletics with the mindset and execution required to create meaningful change.</p>
+          <p class="text-ink">That approach is the foundation of the Operator-Athlete Method.</p>
+          <p>Through Redefine Normal, Cameron shares his story and introduces audiences to the principles that helped reshape his own understanding of what’s possible.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>

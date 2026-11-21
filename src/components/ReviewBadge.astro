@@ -1,0 +1,15 @@
+---
+import { site } from '../config/site';
+---
+{site.reviewMode && (
+  <button
+    type="button"
+    data-review-toggle
+    aria-pressed="true"
+    class="label fixed bottom-4 right-4 z-[60] flex min-h-11 items-center gap-2 bg-[#d4441c] px-3 text-white shadow-lg"
+    title="Development only — hidden when PUBLIC_REVIEW_MODE=false"
+  >
+    <span data-review-count>–</span> items need approval
+    <span>· toggle</span>
+  </button>
+)}

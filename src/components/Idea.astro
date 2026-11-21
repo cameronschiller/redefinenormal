@@ -1,0 +1,39 @@
+---
+import Review from './Review.astro';
+import SectionHead from './SectionHead.astro';
+const inherited = ['What we’re capable of.', 'What we’re supposed to become.', 'What is realistic.', 'What is reasonable.', 'What is out of reach.'];
+---
+<section id="idea" class="bg-paper py-24 md:py-36" aria-labelledby="idea-title">
+  <div class="wrap grid grid-cols-4 gap-x-5 md:grid-cols-12 md:gap-x-6">
+    <SectionHead index="01" label="Transformation" />
+
+    <h2 id="idea-title" class="display col-span-4 text-[13vw] uppercase md:col-span-10 md:text-[7.4vw] 2xl:text-[7.25rem]">
+      <span class="reveal block">Normal is a definition.</span>
+      <span class="reveal block text-[#8a8a8a]" style="--d:100ms">Not a destination.</span>
+    </h2>
+
+    <div class="col-span-4 mt-16 md:col-span-4 md:mt-28">
+      <div class="reveal md:sticky md:top-32">
+        <p class="label text-ash">nor·mal <span class="normal-case tracking-normal">/ˈnɔːr.məl/</span> · adjective</p>
+        <p class="lede mt-4 text-2xl md:text-[1.75rem]">We all inherit definitions of what’s normal.</p>
+      </div>
+    </div>
+    <ul class="col-span-4 mt-10 md:col-span-7 md:col-start-6 md:mt-28" aria-label="Inherited definitions">
+      {inherited.map((line) => (
+        <li class="border-t border-line-ink py-5 last:border-b md:py-6">
+          <span class="strike lede text-[8.4vw] md:text-[3.4vw] 2xl:text-[3.3rem]" data-strike="scroll" style="--strike-weight:0.045em">{line}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="col-span-4 mt-20 grid gap-10 md:col-span-12 md:mt-32 md:grid-cols-12 md:gap-6">
+      <p class="reveal lede text-[2.1rem] md:col-span-6 md:text-[clamp(2.4rem,3.6vw,3.6rem)]">
+        Over time, those assumptions become our definition of normal. But normal isn’t necessarily permanent.
+      </p>
+      <div class="reveal space-y-5 text-lg leading-relaxed text-ash md:col-span-5 md:col-start-8 md:self-end" style="--d:120ms">
+        <p>Cameron’s journey — from being 60 pounds overweight to representing Team USA and becoming a national triathlon champion — demonstrates how dramatically our lives can change when we begin challenging those assumptions and committing to a different path.</p>
+        <p class="text-ink">Redefine Normal is about that transformation. Not simply imagining what’s possible, but understanding how to begin making it possible.</p>
+      </div>
+    </div>
+  </div>
+</section>

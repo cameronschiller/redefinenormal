@@ -1,0 +1,37 @@
+---
+import SectionHead from './SectionHead.astro';
+import { principles } from '../content/credentials';
+---
+<section id="method" class="on-ink bg-ink py-24 text-paper md:py-36" aria-labelledby="method-title">
+  <div class="wrap grid grid-cols-4 gap-x-5 md:grid-cols-12 md:gap-x-6">
+    <SectionHead index="02" label="The Operator-Athlete Method" dark />
+
+    <h2 id="method-title" class="display col-span-4 text-[10vw] uppercase md:col-span-11 md:text-[6.6vw] 2xl:text-[6.5rem]">
+      <span class="reveal block">Transformation isn’t an accident.</span>
+      <span class="reveal block text-fog" style="--d:100ms">It’s something you build.</span>
+    </h2>
+
+    <div class="col-span-4 mt-16 grid gap-10 md:col-span-12 md:mt-24 md:grid-cols-12 md:gap-6">
+      <div class="reveal md:col-span-5">
+        <p class="lede text-[1.9rem] md:text-[clamp(2rem,2.8vw,2.75rem)]">Change doesn’t start at the finish line. It starts the moment you begin applying the principles.</p>
+        <p class="mt-6 text-lg leading-relaxed text-fog">It is built through decisions, behaviors, discipline, adaptation, and the willingness to move beyond what feels familiar.</p>
+      </div>
+      <div class="reveal space-y-5 text-lg leading-relaxed text-fog md:col-span-5 md:col-start-8 md:self-end" style="--d:120ms">
+        <p>Through the <span class="text-paper">Operator-Athlete Method</span>, Cameron connects lessons from high-performance athletics with the mindset and execution required to navigate challenges, pursue ambitious goals, and create meaningful personal change.</p>
+        <p class="text-paper">Redefine Normal introduces audiences to these principles — not as abstract motivation, but as ideas they can begin applying to their own lives.</p>
+      </div>
+    </div>
+
+    <div class="col-span-4 mt-20 md:col-span-12 md:mt-28">
+      <p class="reveal label border-t border-line-paper pt-5 text-fog">The 9 principles</p>
+      <ol class="mt-2 grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="The 9 principles of the Operator-Athlete Method">
+        {principles.map((p, i) => (
+          <li class="flex gap-3 border-b border-line-paper py-4">
+            <span class="label pt-[3px] text-fog/70">{String(i + 1).padStart(2, '0')}</span>
+            <p class="text-[0.95rem] font-medium leading-snug">{p.name}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

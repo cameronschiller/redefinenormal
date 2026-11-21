@@ -1,0 +1,8 @@
+---
+interface Props { index: string; label: string; dark?: boolean }
+const { index, label, dark = false } = Astro.props;
+---
+<div class:list={['col-span-4 mb-12 flex items-center justify-between border-t pt-4 md:col-span-12 md:mb-20', dark ? 'border-line-paper text-fog' : 'border-ink text-ink']}>
+  <p class="label">{label}</p>
+  <p class:list={['label', dark ? 'text-fog' : 'text-ash']}>{index}</p>
+</div>

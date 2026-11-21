@@ -1,0 +1,43 @@
+---
+import Portrait from './Portrait.astro';
+import Review from './Review.astro';
+import { heroPortrait } from '../config/assets';
+import { primaryCredentials, secondaryCredentials } from '../content/credentials';
+---
+<section id="top" class="on-ink relative overflow-hidden bg-ink pt-20 text-paper md:pt-24" aria-labelledby="hero-title">
+  <div class="wrap relative">
+    <h1 id="hero-title" class="display relative z-0 text-center text-[19vw] uppercase leading-[0.86] md:whitespace-nowrap md:text-[10.4vw] 2xl:text-[10rem]">
+      <span class="rise"><span>Redefine <br class="md:hidden" />Normal<span class="text-fog">.</span></span></span>
+    </h1>
+
+    <div class="relative grid grid-cols-4 gap-x-5 md:grid-cols-12 md:gap-x-6">
+      <!-- central portrait: overlaps the title like a magazine cover -->
+      <div class="reveal relative z-10 order-1 col-span-4 -mt-[9vw] md:order-none md:col-span-6 md:col-start-4 md:-mt-[7.4vw]" style="--d:200ms">
+        <div class="mx-auto w-full max-w-[40rem]">
+          <Portrait cutout photo={heroPortrait} slot="Hero portrait — Cameron Schiller (cut-out)" spec="Transparent PNG · waist-up · B&W" eager sizes="(min-width: 768px) 50vw, 100vw" />
+        </div>
+      </div>
+
+      <!-- credentials: who is this, answered in the first screen -->
+      <div class="reveal order-2 col-span-4 -mt-16 md:order-none md:col-span-3 md:col-start-1 md:row-start-1 md:mt-[26%]" style="--d:450ms">
+        <p class="label text-fog">Cameron Schiller</p>
+        <ul class="mt-5 border-t border-line-paper" aria-label="Credentials">
+          {primaryCredentials.map((c) => (
+            <li class="border-b border-line-paper py-3 text-[clamp(1.05rem,1.45vw,1.4rem)] font-semibold uppercase leading-tight tracking-[0.02em]">{c}</li>
+          ))}
+        </ul>
+        <p class="label mt-4 text-fog">{secondaryCredentials}</p>
+      </div>
+
+      <!-- statement -->
+      <div class="reveal order-3 col-span-4 pb-16 pt-12 md:order-none md:col-span-3 md:col-start-10 md:row-start-1 md:mt-[26%] md:pb-0 md:pt-0" style="--d:600ms">
+        <h2 class="text-[1.75rem] font-medium leading-[1.1] tracking-[-0.02em] md:text-[clamp(1.35rem,2vw,1.9rem)]">
+          You don’t have to start extraordinary to become extraordinary.
+        </h2>
+        <p class="mt-4 max-w-xs leading-relaxed text-fog">An interactive keynote about personal transformation, challenging perceived limitations, and applying the principles that make extraordinary change possible.</p>
+        <a href="#book" class="cta cta-invert mt-7">Inquire About Booking <span class="arrow" aria-hidden="true">→</span></a>
+        <p class="label mt-6 text-fog">30-min keynote · 15-min Q&amp;A</p>
+      </div>
+    </div>
+  </div>
+</section>

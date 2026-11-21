@@ -1,0 +1,41 @@
+---
+const links = [
+  { href: '#idea', label: 'Transformation' },
+  { href: '#method', label: 'Method' },
+  { href: '#experience', label: 'Keynote' },
+  { href: '#speaker', label: 'Speaker' },
+];
+---
+<header data-nav class="on-ink fixed inset-x-0 top-0 z-50 bg-ink/90 text-paper backdrop-blur-md">
+  <nav class="wrap grid h-16 grid-cols-[1fr_auto] items-center md:h-20 md:grid-cols-[1fr_auto_1fr]" aria-label="Primary">
+    <a href="#top" class="text-[0.95rem] font-bold tracking-[0.04em] uppercase" aria-label="Redefine Normal — back to top">Redefine Normal</a>
+    <ul class="hidden items-center gap-10 md:flex">
+      {links.map((l) => (
+        <li>
+          <a data-nav-link href={l.href} class="label relative py-2 text-paper/70 transition-colors hover:text-paper aria-[current]:text-paper">{l.label}</a>
+        </li>
+      ))}
+    </ul>
+    <div class="hidden justify-end md:flex">
+      <a href="#book" class="label inline-flex h-11 items-center rounded-full bg-paper px-6 text-ink transition-opacity hover:opacity-85">Book Cameron</a>
+    </div>
+    <button type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" class="label flex h-11 items-center gap-3 justify-self-end md:hidden">
+      <span data-menu-label>Menu</span>
+      <span class="flex w-6 flex-col gap-1.5" aria-hidden="true"><span class="h-[1.5px] bg-current"></span><span class="h-[1.5px] bg-current"></span></span>
+    </button>
+  </nav>
+</header>
+
+<div id="mobile-menu" data-menu hidden class="on-ink fixed inset-0 z-40 bg-ink text-paper md:hidden">
+  <nav class="wrap flex h-full flex-col justify-between pb-10 pt-28" aria-label="Mobile">
+    <ol>
+      {[...links, { href: '#book', label: 'Book Cameron' }].map((l, i) => (
+        <li class="flex items-baseline gap-4 border-b border-line-paper py-4">
+          <span class="label text-fog">0{i + 1}</span>
+          <a href={l.href} class="display text-[10vw] uppercase">{l.label}</a>
+        </li>
+      ))}
+    </ol>
+    <p class="lede text-xl text-fog">An interactive keynote by Cameron Schiller.</p>
+  </nav>
+</div>

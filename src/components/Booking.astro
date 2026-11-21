@@ -1,0 +1,204 @@
+---
+import Review from './Review.astro';
+import SectionHead from './SectionHead.astro';
+import { site, withBase } from '../config/site';
+const { formEndpoint, email } = site.booking;
+const oneSheet = site.oneSheet ? withBase(site.oneSheet) : null;
+
+const field = 'peer block w-full border-0 border-b border-ink/45 bg-transparent px-0 pb-3 pt-2 text-lg text-ink placeholder:text-ash/70 transition-colors focus:border-ink focus:outline-none focus:ring-0 aria-[invalid=true]:border-[#b3261e]';
+const lbl = 'label flex justify-between text-ash';
+---
+<section id="book" class="relative bg-paper pb-24 pt-24 md:pb-36 md:pt-36" aria-labelledby="book-title">
+  <div class="wrap grid grid-cols-4 gap-x-5 md:grid-cols-12 md:gap-x-6">
+    <SectionHead index="06" label="Booking" />
+
+    <h2 id="book-title" class="display col-span-4 text-[11vw] uppercase md:col-span-12 md:text-[6.4vw] 2xl:text-[6.25rem]">
+      <span class="reveal block">Bring Redefine Normal</span>
+      <span class="reveal block" style="--d:80ms">to your audience.</span>
+    </h2>
+
+    <!-- details -->
+    <aside class="col-span-4 mt-16 md:col-span-4 md:mt-24" aria-label="Booking details">
+      <dl class="reveal">
+        <div class="border-t border-ink py-4"><dt class="label text-ash">Standard format</dt><dd class="mt-1 text-lg">30-minute interactive keynote + 15-minute audience Q&amp;A</dd></div>
+        <div class="border-t border-line-ink py-4"><dt class="label text-ash">Also available</dt><dd class="mt-1 text-lg">30-minute keynote only</dd></div>
+        <div class="border-t border-line-ink py-4">
+          <dt class="label text-ash">Direct contact</dt>
+          <dd class="mt-1 text-lg">
+            {email
+              ? <a class="underline decoration-1 underline-offset-4 hover:decoration-2" href={`mailto:${email}?subject=${encodeURIComponent('Redefine Normal — booking inquiry')}`}>{email}</a>
+              : <Review note="Booking email needed"><span class="text-ash">Booking email to be confirmed</span></Review>}
+          </dd>
+        </div>
+        <div class="border-y border-line-ink py-4">
+          <dt class="label text-ash">Speaker one-sheet</dt>
+          <dd class="mt-2">
+            {oneSheet
+              ? <a href={oneSheet} download class="cta mt-1 !min-h-11">Download Speaker One-Sheet <span aria-hidden="true">↓</span></a>
+              : <Review note="One-sheet PDF needed"><span class="label inline-flex min-h-11 items-center gap-3 rounded-full border border-line-ink px-5 text-ash">Download Speaker One-Sheet <span aria-hidden="true">↓</span></span></Review>}
+          </dd>
+        </div>
+      </dl>
+      <div class="reveal mt-10 space-y-4">
+        <p class="lede text-2xl">An extraordinary personal story. An interactive audience experience. Practical principles for transformation.</p>
+        <p class="leading-relaxed text-ash">Redefine Normal combines inspiration with a new perspective on what’s possible — and how meaningful change begins.</p>
+        <p class="leading-relaxed text-ash">Available for corporate events, leadership programs, universities, conferences, and professional communities.</p>
+      </div>
+    </aside>
+
+    <!-- form -->
+    <div class="col-span-4 mt-14 rounded-3xl bg-[#f2f2f2] p-6 sm:p-10 md:col-span-7 md:col-start-6 md:mt-24 lg:p-12">
+      <h3 class="mb-10 border-b border-ink pb-5 text-2xl font-semibold uppercase tracking-[0.01em]">Booking inquiry</h3>
+      <form
+        data-booking-form
+        data-endpoint={formEndpoint ?? ''}
+        data-email={email ?? ''}
+        class="reveal grid gap-x-6 gap-y-9 sm:grid-cols-2"
+        novalidate
+        aria-describedby="form-note"
+      >
+        <div>
+          <label for="f-name" class={lbl}><span>Name</span><span>Required</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required class={field} />
+        </div>
+        <div>
+          <label for="f-org" class={lbl}><span>Organization</span><span>Required</span></label>
+          <input id="f-org" name="organization" type="text" autocomplete="organization" required class={field} />
+        </div>
+        <div class="sm:col-span-2">
+          <label for="f-email" class={lbl}><span>Email</span><span>Required</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required class={field} />
+        </div>
+        <div>
+          <label for="f-date" class={lbl}><span>Event date</span><span>Optional</span></label>
+          <input id="f-date" name="event_date" type="text" placeholder="e.g. March 2027" class={field} />
+        </div>
+        <div>
+          <label for="f-loc" class={lbl}><span>Event location</span><span>Optional</span></label>
+          <input id="f-loc" name="event_location" type="text" placeholder="City or virtual" class={field} />
+        </div>
+        <div class="sm:col-span-2">
+          <label for="f-size" class={lbl}><span>Estimated audience size</span><span>Optional</span></label>
+          <select id="f-size" name="audience_size" class={`${field} appearance-none rounded-none bg-[length:12px] bg-[right_0.25rem_center] bg-no-repeat`} style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230a0a0a' stroke-width='1.4'/%3E%3C/svg%3E&quot;)">
+            <option value="">Select a range</option>
+            <option>Under 50</option>
+            <option>50–200</option>
+            <option>200–500</option>
+            <option>500–1,000</option>
+            <option>1,000+</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="f-msg" class={lbl}><span>Event details</span><span>Required</span></label>
+          <textarea id="f-msg" name="message" rows="4" required class={`${field} resize-y`} placeholder="Tell us about the event and the audience."></textarea>
+        </div>
+        <!-- spam trap: hidden from people and assistive tech -->
+        <div class="hidden" aria-hidden="true">
+          <label for="f-gotcha">Leave this empty</label>
+          <input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="flex flex-col gap-5 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+          <button type="submit" class="cta cta-solid justify-between sm:min-w-72 disabled:cursor-wait disabled:opacity-60">
+            <span data-submit-label>Inquire About Booking</span> <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <p id="form-note" class="label text-ash">
+            {formEndpoint ? 'Your details are used only to respond to this inquiry.' : <Review note="Form not connected">Online form not yet connected</Review>}
+          </p>
+        </div>
+
+        <div data-form-status role="status" aria-live="polite" tabindex="-1" class="sm:col-span-2 empty:hidden focus:outline-none"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-booking-form]');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('[data-form-status]')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const label = form.querySelector<HTMLElement>('[data-submit-label]')!;
+    const endpoint = form.dataset.endpoint;
+    const email = form.dataset.email;
+
+    const show = (kind: 'ok' | 'error' | 'info', title: string, body: string, link?: { href: string; text: string }) => {
+      const tone = kind === 'error' ? 'border-[#b3261e]' : 'border-ink';
+      status.innerHTML = '';
+      const box = document.createElement('div');
+      box.className = `border-l-2 ${tone} pl-5 py-1`;
+      const h = document.createElement('p'); h.className = 'display text-3xl uppercase'; h.textContent = title;
+      const p = document.createElement('p'); p.className = 'mt-2 text-ash'; p.textContent = body;
+      box.append(h, p);
+      if (link) {
+        const a = document.createElement('a');
+        a.href = link.href; a.textContent = link.text;
+        a.className = 'label mt-3 inline-flex min-h-11 items-center underline underline-offset-4';
+        box.append(a);
+      }
+      status.append(box);
+      status.focus();
+    };
+
+    const validate = () => {
+      let first: HTMLElement | null = null;
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach((el) => {
+        const ok = el.checkValidity() && el.value.trim() !== '';
+        el.setAttribute('aria-invalid', String(!ok));
+        if (!ok && !first) first = el;
+      });
+      return first as HTMLElement | null;
+    };
+    form.addEventListener('input', (e) => {
+      const t = e.target as HTMLElement;
+      if (t.getAttribute('aria-invalid') === 'true') t.setAttribute('aria-invalid', 'false');
+    });
+
+    const mailto = () => {
+      const d = new FormData(form);
+      const lines = [
+        `Name: ${d.get('name')}`, `Organization: ${d.get('organization')}`, `Email: ${d.get('email')}`,
+        `Event date: ${d.get('event_date') || '—'}`, `Location: ${d.get('event_location') || '—'}`,
+        `Audience size: ${d.get('audience_size') || '—'}`, '', String(d.get('message') ?? ''),
+      ];
+      return `mailto:${email}?subject=${encodeURIComponent('Redefine Normal — booking inquiry')}&body=${encodeURIComponent(lines.join('\n'))}`;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const invalid = validate();
+      if (invalid) {
+        show('error', 'A few details needed', 'Please complete your name, organization, a valid email, and event details.');
+        invalid.focus();
+        return;
+      }
+      if ((form.elements.namedItem('_gotcha') as HTMLInputElement)?.value) return;
+
+      if (!endpoint) {
+        // Not connected: never pretend the inquiry was sent.
+        if (email) show('info', 'Not sent yet', 'Online inquiries aren’t connected yet. Your details are ready to send by email instead.', { href: mailto(), text: 'Open in your email app →' });
+        else show('info', 'Form not connected', 'This inquiry was not sent. The booking form is awaiting configuration (PUBLIC_FORM_ENDPOINT).');
+        return;
+      }
+
+      button.disabled = true;
+      label.textContent = 'Sending…';
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show('ok', 'Inquiry received', 'Thank you. Cameron will be in touch about your event.');
+      } catch {
+        show('error', 'Not sent', 'Something went wrong and your inquiry was not sent. Please try again in a moment.',
+          email ? { href: mailto(), text: `Or email ${email} →` } : undefined);
+      } finally {
+        button.disabled = false;
+        label.textContent = 'Inquire About Booking';
+      }
+    });
+  }
+</script>

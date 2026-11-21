@@ -1,0 +1,20 @@
+---
+/**
+ * Marks content that still needs Cameron's approval or verification.
+ * Renders nothing extra when review mode is off (PUBLIC_REVIEW_MODE=false).
+ *   <Review note="Verify">four-time Team USA</Review>
+ *   <Review block note="Copy draft">…</Review>
+ */
+import { site } from '../config/site';
+interface Props { note?: string; block?: boolean; class?: string }
+const { note = 'Needs approval', block = false, class: className } = Astro.props;
+const on = site.reviewMode;
+---
+{block ? (
+  <div class={className} data-review-block={on ? note : undefined}>
+    {on && <span class="review-tag mb-3" aria-hidden="true">{note}</span>}
+    <slot />
+  </div>
+) : (
+  <span class={className} data-review={on ? note : undefined}><slot /></span>
+)}

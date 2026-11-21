@@ -21,7 +21,7 @@ export const site = {
   },
 
   /** Path under /public, or null until the final PDF is supplied. */
-  oneSheet: null as string | null, // e.g. 'assets/one-sheet/redefine-normal-one-sheet.pdf'
+  oneSheet: 'assets/one-sheet/redefine-normal-one-sheet.pdf' as string | null,
 
   analytics: {
     plausibleDomain: clean(env.PUBLIC_PLAUSIBLE_DOMAIN),

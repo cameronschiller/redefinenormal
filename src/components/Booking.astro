@@ -55,30 +55,29 @@ const lbl = 'label flex justify-between text-ash';
         data-email={email ?? ''}
         class="reveal grid gap-x-6 gap-y-9 sm:grid-cols-2"
         novalidate
-        aria-describedby="form-note"
       >
         <div>
-          <label for="f-name" class={lbl}><span>Name</span><span>Required</span></label>
+          <label for="f-name" class={lbl}>Name</label>
           <input id="f-name" name="name" type="text" autocomplete="name" required class={field} />
         </div>
         <div>
-          <label for="f-org" class={lbl}><span>Organization</span><span>Required</span></label>
+          <label for="f-org" class={lbl}>Organization</label>
           <input id="f-org" name="organization" type="text" autocomplete="organization" required class={field} />
         </div>
         <div class="sm:col-span-2">
-          <label for="f-email" class={lbl}><span>Email</span><span>Required</span></label>
+          <label for="f-email" class={lbl}>Email</label>
           <input id="f-email" name="email" type="email" autocomplete="email" required class={field} />
         </div>
         <div>
-          <label for="f-date" class={lbl}><span>Event date</span><span>Optional</span></label>
+          <label for="f-date" class={lbl}>Event date</label>
           <input id="f-date" name="event_date" type="text" placeholder="e.g. March 2027" class={field} />
         </div>
         <div>
-          <label for="f-loc" class={lbl}><span>Event location</span><span>Optional</span></label>
+          <label for="f-loc" class={lbl}>Event location</label>
           <input id="f-loc" name="event_location" type="text" placeholder="City or virtual" class={field} />
         </div>
         <div class="sm:col-span-2">
-          <label for="f-size" class={lbl}><span>Estimated audience size</span><span>Optional</span></label>
+          <label for="f-size" class={lbl}>Estimated audience size</label>
           <select id="f-size" name="audience_size" class={`${field} appearance-none rounded-none bg-[length:12px] bg-[right_0.25rem_center] bg-no-repeat`} style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230a0a0a' stroke-width='1.4'/%3E%3C/svg%3E&quot;)">
             <option value="">Select a range</option>
             <option>Under 50</option>
@@ -89,7 +88,7 @@ const lbl = 'label flex justify-between text-ash';
           </select>
         </div>
         <div class="sm:col-span-2">
-          <label for="f-msg" class={lbl}><span>Event details</span><span>Required</span></label>
+          <label for="f-msg" class={lbl}>Event details</label>
           <textarea id="f-msg" name="message" rows="4" required class={`${field} resize-y`} placeholder="Tell us about the event and the audience."></textarea>
         </div>
         <!-- spam trap: hidden from people and assistive tech -->
@@ -102,9 +101,6 @@ const lbl = 'label flex justify-between text-ash';
           <button type="submit" class="cta cta-solid justify-between sm:min-w-72 disabled:cursor-wait disabled:opacity-60">
             <span data-submit-label>Inquire About Booking</span> <span class="arrow" aria-hidden="true">→</span>
           </button>
-          <p id="form-note" class="label text-ash">
-            {formEndpoint ? 'Your details are used only to respond to this inquiry.' : <Review note="Form not connected">Online form not yet connected</Review>}
-          </p>
         </div>
 
         <div data-form-status role="status" aria-live="polite" tabindex="-1" class="sm:col-span-2 empty:hidden focus:outline-none"></div>

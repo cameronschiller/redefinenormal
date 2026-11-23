@@ -3,6 +3,7 @@ import { Picture } from 'astro:assets';
 import type { Photo } from '../config/assets';
 
 interface Props {
+  color?: boolean;        // keep the photo in color (default: black and white)
   photo: Photo | null;
   slot: string;          // human name of the slot, shown on the placeholder
   spec: string;          // e.g. "Portrait 4:5 · ≥ 2400 px"
@@ -12,7 +13,7 @@ interface Props {
   cutout?: boolean;
   dark?: boolean;        // placeholder on a black section      // transparent, background-removed portrait
 }
-const { photo, slot, spec, class: className, sizes = '(min-width: 1024px) 40vw, 100vw', eager = false, cutout = false, dark = false } = Astro.props;
+const { photo, slot, spec, class: className, sizes = '(min-width: 1024px) 40vw, 100vw', eager = false, cutout = false, dark = false, color = false } = Astro.props;
 ---
 {photo ? (
   <Picture
@@ -23,7 +24,7 @@ const { photo, slot, spec, class: className, sizes = '(min-width: 1024px) 40vw, 
     sizes={sizes}
     loading={eager ? 'eager' : 'lazy'}
     fetchpriority={eager ? 'high' : 'auto'}
-    class:list={[cutout ? 'h-auto w-full' : 'h-full w-full object-cover', 'grayscale', className]}
+    class:list={[cutout ? 'h-auto w-full' : 'h-full w-full object-cover', !color && 'grayscale', className]}
   />
 ) : cutout ? (
   <div class:list={['relative h-full w-full', className]} role="img" aria-label={`Development placeholder: ${slot}. Approved photography pending.`}>

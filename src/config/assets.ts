@@ -22,4 +22,4 @@ export const heroPortrait: Photo | null = { src: heroCutout, alt: 'Cameron Schil
 export const heroSupporting: Photo | null = null;
 export const speakerPortrait: Photo | null = { src: speaker, alt: 'Cameron Schiller, studio portrait in a black shirt' };
 /** Transformation section: a vertical racing photo (3:4, ≥ 1600 px tall). null = labelled placeholder. */
-export const racingPhoto: Photo | null = { src: racing, alt: 'Cameron Schiller racing on a time-trial bike' };
+export const racingPhoto: Photo | null = { src: racing, alt: 'Cameron Schiller racing for Team USA at a World Triathlon event' };
